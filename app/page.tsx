@@ -4,6 +4,11 @@ import { useState } from 'react';
 
 const photos = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
+const steps = [
+  {label:'Antes', text:'Na simulação, você escolhe qual assunto quer conversar primeiro. Nenhum relato pessoal é solicitado.'},
+  {label:'Durante', text:'Veja como o site apresentaria a conversa inicial, o tempo reservado para perguntas e a explicação do serviço.'},
+  {label:'Depois', text:'A página conceitual mostra onde entraria um resumo da conversa. Nenhum documento ou dado é criado nesta demo.'},
+];
 const paths = [
   { title: 'Movimento no dia a dia', index: '01', tag: 'ROTINA', heading: 'A rotina também é movimento.', description: 'Explore como uma clínica poderia apresentar seu atendimento a quem quer conversar sobre tarefas, hábitos e objetivos do dia a dia.', points: ['Contexto de vida e rotina', 'Objetivos em linguagem simples', 'Apresentação do acompanhamento'] },
   { title: 'Retorno ao esporte', index: '02', tag: 'ESPORTE', heading: 'Cada esporte tem seu ritmo.', description: 'Veja uma jornada conceitual para apresentar serviços a quem deseja conversar com um profissional sobre a volta a uma prática esportiva.', points: ['Histórico da prática esportiva', 'Discussão de objetivos', 'Acompanhamento individual'] },
@@ -32,6 +37,7 @@ function MotionArt() {
 
 export default function Page() {
   const [active, setActive] = useState(0);
+  const [step, setStep] = useState(0);
   const path = paths[active];
   return <>
     <a className="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -52,6 +58,13 @@ export default function Page() {
       </section>
       <section className="method" id="metodo">
         <div><MotionArt /></div><div className="method-copy"><p className="overline">O PRIMEIRO ENCONTRO</p><h2>O que seria conversado?</h2><p>O desenho deste serviço prioriza entendimento antes de qualquer próxima decisão.</p><ol><li><strong>O que mudou na sua rotina?</strong><span>Espaço para ouvir o que motivou a procura.</span></li><li><strong>O que você gostaria de recuperar?</strong><span>Objetivos descritos com as suas próprias palavras.</span></li><li><strong>Qual seria o próximo passo?</strong><span>Uma explicação clara do que a clínica propõe e por quê.</span></li></ol></div>
+      </section>
+      <section className="preview" aria-labelledby="preview-title">
+        <figure><img src={photos+'/editorial.webp'} alt="Pés de atletas em movimento durante uma corrida" loading="lazy" width="1100" height="733"/><figcaption>Movimento em contexto · fotografia editorial</figcaption></figure>
+        <div><p className="overline">UM PERCURSO EM TRÊS TEMPOS</p><h2 id="preview-title">Prévia do encontro.</h2>
+          <div className="preview-controls" role="group" aria-label="Fase do encontro">{steps.map((item,i)=><button type="button" key={item.label} aria-controls="preview-result" aria-pressed={i===step} onClick={()=>setStep(i)}>{item.label}</button>)}</div>
+          <p className="preview-result" id="preview-result" aria-live="polite"><strong>{steps[step].label}:</strong> {steps[step].text}</p>
+        </div>
       </section>
       <section className="questions"><p className="overline">PERGUNTAS SOBRE O SITE</p><h2>Bom saber.</h2><details><summary>Posso usar a página para marcar atendimento?</summary><p>Não. Esta é uma demonstração de interface; o estúdio Eixo Movimento é fictício.</p></details><details><summary>A escolha de jornada é uma avaliação?</summary><p>Não. As opções só reorganizam o conteúdo da página e não correspondem a uma indicação clínica.</p></details></section>
       <section className="end" id="sobre"><p className="overline">PROJETO CONCEITUAL</p><h2>Design para um<br/>primeiro contato mais claro.</h2><p>Marca fictícia. Este site não oferece atendimento, diagnóstico ou orientação de saúde, e não coleta informações pessoais.</p></section>
