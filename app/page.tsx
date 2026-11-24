@@ -42,7 +42,7 @@ export default function Page() {
   return <>
     <a className="skip" href="#conteudo">Pular para o conteúdo</a>
     <header><a className="brand" href="#inicio"><b aria-hidden="true">✳</b> EIXO<span>MOVIMENTO</span></a><nav aria-label="Menu principal"><a href="#jornadas">Jornadas</a><a href="#metodo">Método</a><a href="#sobre">Sobre a demo</a></nav></header>
-    <main id="conteudo">
+    <main id="conteudo" tabIndex={-1}>
       <section className="hero" id="inicio">
         <div className="hero-copy"><p className="overline">FISIOTERAPIA <b>·</b> CONCEITO DE MARCA</p><h1>O corpo<br/>em <em>movimento.</em></h1><p className="intro">Um conceito de clínica que coloca a escuta, os objetivos e a clareza no centro do cuidado.</p><a className="action" href="#jornadas">Explorar jornadas</a></div>
         <figure className="hero-visual"><img src={photos+'/hero.webp'} alt="Atleta em posição de movimento numa pista de corrida" width="1200" height="900" fetchPriority="high"/><span className="annotation"><span aria-hidden="true">⊕</span> MOVIMENTO · ESCUTA · CONTEXTO</span></figure>
