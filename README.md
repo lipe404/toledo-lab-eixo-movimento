@@ -20,3 +20,5 @@ Abra http://localhost:3000 para ver a landing page.
 O projeto usa Next.js App Router, TypeScript e exportação estática. `npm run build` gera `out/`.
 Para GitHub Pages, em **Settings → Pages**, selecione **GitHub Actions**, então execute o fluxo “Publicar demonstração no GitHub Pages”. O fluxo configura o caminho público do repositório automaticamente.
 Para Vercel, importe o repositório como projeto Next.js sem definir `PAGES_BASE_PATH`.
+
+Fotografia editorial: [Andrea Piacquadio, Pexels](https://www.pexels.com/photo/fit-runner-standing-on-racetrack-in-athletics-arena-3756165/), [licença](https://www.pexels.com/license/).

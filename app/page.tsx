@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+const photos = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 const paths = [
   { title: 'Movimento no dia a dia', index: '01', tag: 'ROTINA', heading: 'A rotina também é movimento.', description: 'Explore como uma clínica poderia apresentar seu atendimento a quem quer conversar sobre tarefas, hábitos e objetivos do dia a dia.', points: ['Contexto de vida e rotina', 'Objetivos em linguagem simples', 'Apresentação do acompanhamento'] },
   { title: 'Retorno ao esporte', index: '02', tag: 'ESPORTE', heading: 'Cada esporte tem seu ritmo.', description: 'Veja uma jornada conceitual para apresentar serviços a quem deseja conversar com um profissional sobre a volta a uma prática esportiva.', points: ['Histórico da prática esportiva', 'Discussão de objetivos', 'Acompanhamento individual'] },
@@ -33,11 +35,11 @@ export default function Page() {
   const path = paths[active];
   return <>
     <a className="skip" href="#conteudo">Pular para o conteúdo</a>
-    <header><a className="brand" href="#inicio"><b aria-hidden="true">✳</b> EIXO<span>MOVIMENTO</span></a><nav aria-label="Menu principal"><a href="#jornadas">Jornadas</a><a href="#sobre">Sobre a demo</a></nav></header>
+    <header><a className="brand" href="#inicio"><b aria-hidden="true">✳</b> EIXO<span>MOVIMENTO</span></a><nav aria-label="Menu principal"><a href="#jornadas">Jornadas</a><a href="#metodo">Método</a><a href="#sobre">Sobre a demo</a></nav></header>
     <main id="conteudo">
       <section className="hero" id="inicio">
         <div className="hero-copy"><p className="overline">FISIOTERAPIA <b>·</b> CONCEITO DE MARCA</p><h1>O corpo<br/>em <em>movimento.</em></h1><p className="intro">Um conceito de clínica que coloca a escuta, os objetivos e a clareza no centro do cuidado.</p><a className="action" href="#jornadas">Explorar jornadas</a></div>
-        <div className="hero-visual"><MotionArt /><span className="annotation"><span aria-hidden="true">⊕</span> ESTUDO DE MOVIMENTO</span></div>
+        <figure className="hero-visual"><img src={photos+'/hero.webp'} alt="Atleta em posição de movimento numa pista de corrida" width="1200" height="900" fetchPriority="high"/><span className="annotation"><span aria-hidden="true">⊕</span> MOVIMENTO · ESCUTA · CONTEXTO</span></figure>
       </section>
       <section className="paths" id="jornadas" aria-labelledby="path-title">
         <div className="paths-heading"><p className="overline">EXPERIÊNCIA INTERATIVA</p><h2 id="path-title">Pontos de partida.</h2><p>Selecione uma opção para explorar a proposta de atendimento.</p></div>
@@ -48,6 +50,10 @@ export default function Page() {
           <article className="detail" id="path-detail" aria-live="polite"><div className="detail-inner" key={path.tag}><p className="overline">{path.tag}</p><h3>{path.heading}</h3><p>{path.description}</p><ul>{path.points.map(point => <li key={point}>{point}</li>)}</ul></div></article>
         </div>
       </section>
+      <section className="method" id="metodo">
+        <div><MotionArt /></div><div className="method-copy"><p className="overline">O PRIMEIRO ENCONTRO</p><h2>O que seria conversado?</h2><p>O desenho deste serviço prioriza entendimento antes de qualquer próxima decisão.</p><ol><li><strong>O que mudou na sua rotina?</strong><span>Espaço para ouvir o que motivou a procura.</span></li><li><strong>O que você gostaria de recuperar?</strong><span>Objetivos descritos com as suas próprias palavras.</span></li><li><strong>Qual seria o próximo passo?</strong><span>Uma explicação clara do que a clínica propõe e por quê.</span></li></ol></div>
+      </section>
+      <section className="questions"><p className="overline">PERGUNTAS SOBRE O SITE</p><h2>Bom saber.</h2><details><summary>Posso usar a página para marcar atendimento?</summary><p>Não. Esta é uma demonstração de interface; o estúdio Eixo Movimento é fictício.</p></details><details><summary>A escolha de jornada é uma avaliação?</summary><p>Não. As opções só reorganizam o conteúdo da página e não correspondem a uma indicação clínica.</p></details></section>
       <section className="end" id="sobre"><p className="overline">PROJETO CONCEITUAL</p><h2>Design para um<br/>primeiro contato mais claro.</h2><p>Marca fictícia. Este site não oferece atendimento, diagnóstico ou orientação de saúde, e não coleta informações pessoais.</p></section>
     </main>
     <footer><span>EIXO MOVIMENTO</span><a href="#inicio">Voltar ao início</a></footer>
