@@ -52,7 +52,7 @@ export default function Page() {
   }
   return <>
     <a className="skip" href="#conteudo">Pular para o conteúdo</a>
-    <header><a className="brand" href="#inicio"><b aria-hidden="true">✳</b> EIXO<span>MOVIMENTO</span></a><nav aria-label="Menu principal"><a href="#jornadas">Jornadas</a><a href="#metodo">Método</a><a href="#sobre">Sobre a demo</a></nav></header>
+    <header><a className="brand brand-masthead" href="#inicio"><img className="brand-image" src={(process.env.NEXT_PUBLIC_BASE_PATH ?? "") + "/brand-lockup.webp"} alt="Eixo Movimento" width="640" height="160" decoding="async" /></a><nav aria-label="Menu principal"><a href="#jornadas">Jornadas</a><a href="#metodo">Método</a><a href="#sobre">Sobre a demo</a></nav></header>
     <main id="conteudo" tabIndex={-1}>
       <section className="hero" id="inicio">
         <div className="hero-copy"><p className="overline">FISIOTERAPIA <b>·</b> CONCEITO DE MARCA</p><h1>O corpo<br/>em <em>movimento.</em></h1><p className="intro">Chegue ao primeiro encontro sabendo o que conversar. Explore como uma clínica pode explicar suas opções de fisioterapia antes de qualquer agendamento.</p><a className="action" href="#jornadas">Montar guia do primeiro encontro</a></div>
@@ -80,6 +80,6 @@ export default function Page() {
       <section className="questions"><p className="overline">PERGUNTAS SOBRE O SITE</p><h2>Bom saber.</h2><details><summary>Posso usar a página para marcar atendimento?</summary><p>Não. Esta é uma demonstração de interface; o estúdio Eixo Movimento é fictício.</p></details><details><summary>A escolha de jornada é uma avaliação?</summary><p>Não. As opções só reorganizam o conteúdo da página e não correspondem a uma indicação clínica.</p></details></section>
       <section className="end" id="sobre"><p className="overline">PROJETO CONCEITUAL</p><h2>Design para um<br/>primeiro contato mais claro.</h2><p>Marca fictícia. Este site não oferece atendimento, diagnóstico ou orientação de saúde, e não coleta informações pessoais.</p></section>
     </main>
-    <footer><span>EIXO MOVIMENTO</span><a href="#inicio">Voltar ao início</a></footer>
+    <footer><img className="brand-image brand-footer" src={(process.env.NEXT_PUBLIC_BASE_PATH ?? "") + "/brand-lockup.webp"} alt="Eixo Movimento" width="640" height="160" decoding="async" /><a href="#inicio">Voltar ao início</a></footer>
   </>;
 }
