@@ -38,13 +38,24 @@ function MotionArt() {
 export default function Page() {
   const [active, setActive] = useState(0);
   const [step, setStep] = useState(0);
+  const [downloadFeedback, setDownloadFeedback] = useState('');
   const path = paths[active];
+  function downloadGuide() {
+    const text = ['EIXO MOVIMENTO · GUIA DEMONSTRATIVO','',path.title,path.description,'','Assuntos para conversar:',...path.points.map(point=>'- '+point),'','Projeto conceitual. Não é orientação clínica nem confirmação de atendimento.'].join('\r\n');
+    const url = URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));
+    const link = document.createElement('a');
+    link.href=url;
+    link.download='eixo-guia-do-primeiro-encontro.txt';
+    document.body.append(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    setDownloadFeedback('Guia solicitado: '+path.title+'.');
+  }
   return <>
     <a className="skip" href="#conteudo">Pular para o conteúdo</a>
     <header><a className="brand" href="#inicio"><b aria-hidden="true">✳</b> EIXO<span>MOVIMENTO</span></a><nav aria-label="Menu principal"><a href="#jornadas">Jornadas</a><a href="#metodo">Método</a><a href="#sobre">Sobre a demo</a></nav></header>
     <main id="conteudo" tabIndex={-1}>
       <section className="hero" id="inicio">
-        <div className="hero-copy"><p className="overline">FISIOTERAPIA <b>·</b> CONCEITO DE MARCA</p><h1>O corpo<br/>em <em>movimento.</em></h1><p className="intro">Um conceito de clínica que coloca a escuta, os objetivos e a clareza no centro do cuidado.</p><a className="action" href="#jornadas">Explorar jornadas</a></div>
+        <div className="hero-copy"><p className="overline">FISIOTERAPIA <b>·</b> CONCEITO DE MARCA</p><h1>O corpo<br/>em <em>movimento.</em></h1><p className="intro">Chegue ao primeiro encontro sabendo o que conversar. Explore como uma clínica pode explicar suas opções de fisioterapia antes de qualquer agendamento.</p><a className="action" href="#jornadas">Montar guia do primeiro encontro</a></div>
         <figure className="hero-visual"><img src={photos+'/hero.webp'} alt="Atleta em posição de movimento numa pista de corrida" width="1200" height="900" fetchPriority="high"/><span className="annotation"><span aria-hidden="true">⊕</span> MOVIMENTO · ESCUTA · CONTEXTO</span></figure>
       </section>
       <section className="paths" id="jornadas" aria-labelledby="path-title">
@@ -53,8 +64,8 @@ export default function Page() {
           <div className="path-options" role="group" aria-label="Escolher uma jornada">
             {paths.map((item, i) => <button key={item.title} type="button" aria-controls="path-detail" aria-pressed={active===i} onClick={() => setActive(i)}><span>{item.index}</span>{item.title}</button>)}
           </div>
-          <article className="detail" id="path-detail" aria-live="polite"><div className="detail-inner" key={path.tag}><p className="overline">{path.tag}</p><h3>{path.heading}</h3><p>{path.description}</p><ul>{path.points.map(point => <li key={point}>{point}</li>)}</ul></div></article>
-        </div>
+          <article className="detail" id="path-detail" aria-live="polite"><div className="detail-inner" key={path.tag}><p className="overline">{path.tag}</p><h3>{path.heading}</h3><p>{path.description}</p><ul>{path.points.map(point => <li key={point}>{point}</li>)}</ul><button className="action" type="button" onClick={downloadGuide}>Baixar meu guia</button><p className="privacy-note">Grátis, sem cadastro. A seleção muda o guia, mas não indica tratamento.</p></div></article>
+        </div><p className="interaction-status" role="status">{downloadFeedback}</p>
       </section>
       <section className="method" id="metodo">
         <div><MotionArt /></div><div className="method-copy"><p className="overline">O PRIMEIRO ENCONTRO</p><h2>O que seria conversado?</h2><p>O desenho deste serviço prioriza entendimento antes de qualquer próxima decisão.</p><ol><li><strong>O que mudou na sua rotina?</strong><span>Espaço para ouvir o que motivou a procura.</span></li><li><strong>O que você gostaria de recuperar?</strong><span>Objetivos descritos com as suas próprias palavras.</span></li><li><strong>Qual seria o próximo passo?</strong><span>Uma explicação clara do que a clínica propõe e por quê.</span></li></ol></div>

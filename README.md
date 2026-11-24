@@ -24,3 +24,6 @@ Para Vercel, importe o repositório como projeto Next.js sem definir `PAGES_BASE
 Fotografia editorial: [Andrea Piacquadio, Pexels](https://www.pexels.com/photo/fit-runner-standing-on-racetrack-in-athletics-arena-3756165/), [licença](https://www.pexels.com/license/).
 
 Fotografia secundária: [Andrew Durkin, Pexels](https://www.pexels.com/photo/close-up-of-marathon-runners-feet-in-motion-29596317/).
+
+### Funil demonstrativo
+Promessa de clareza antes do primeiro encontro → selecionar assunto → baixar guia local personalizado, sem cadastro. Experimento futuro: comparar “Montar guia do primeiro encontro” e “Ver perguntas para o encontro” e medir, em teste moderado com consentimento, quantos encontram o guia sem ajuda. Nenhum evento é coletado pelo site.
